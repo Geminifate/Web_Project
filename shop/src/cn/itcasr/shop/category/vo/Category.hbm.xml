@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2019??7??18?? ????9:00:08 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.itcasr.shop.category.vo.Category" table="category">
+        <id name="cid" type="java.lang.Integer">
+            <generator class="native" />
+        </id>
+        <property name="cname" type="java.lang.String">
+        </property>
+        <set name="categorySeconds" table="categorysecond" inverse="false" lazy="false" cascade="delete">
+            <key>
+                <column name="cid" />
+            </key>
+            <one-to-many class="cn.itcasr.shop.categorysecond.vo.CategorySecond" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2019??7??18?? ????9:00:08 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.itcasr.shop.product.vo.Product" table="PRODUCT">
+        <id name="pid" type="java.lang.Integer">
+            <generator class="native" />
+        </id>
+        <property name="pname" type="java.lang.String">
+        </property>
+        <property name="market_price" type="java.lang.Double">
+        </property>
+        <property name="shop_price" type="java.lang.Double">
+        </property>
+        <property name="image" type="java.lang.String">
+        </property>
+        <property name="pdesc" type="java.lang.String">
+        </property>
+        <property name="is_hot" type="java.lang.Integer">
+        </property>
+        <property name="pdate" type="java.util.Date">
+        </property>
+        <many-to-one name="categorySecond" class="cn.itcasr.shop.categorysecond.vo.CategorySecond" fetch="join">
+            <column name="csid" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

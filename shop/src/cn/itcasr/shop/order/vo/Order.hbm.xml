@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2019??7??18?? ????9:00:08 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.itcasr.shop.order.vo.Order" table="orders">
+        <id name="oid" type="java.lang.Integer">
+            <generator class="native" />
+        </id>
+        <property name="total" type="java.lang.Double">
+        </property>
+        <property name="ordertime" type="java.util.Date">
+        </property>
+        <property name="state" type="java.lang.Integer">
+        </property>
+        <property name="name" type="java.lang.String">
+        </property>
+        <property name="phone" type="java.lang.String">
+        </property>
+        <property name="addr" type="java.lang.String">
+        </property>
+        <!-- 与用户关系 -->
+        <many-to-one name="user" class="cn.itcasr.shop.user.vo.User" fetch="join" column="uid" lazy="false">
+        </many-to-one>
+        <!-- 与订单项关系 -->
+        <set name="orderItems" table="orderitem" inverse="false" lazy="false" cascade="save-update">
+            <key>
+                <column name="oid" />
+            </key>
+            <one-to-many class="cn.itcasr.shop.order.vo.OrderItem" />
+        </set>
+    </class>
+</hibernate-mapping>

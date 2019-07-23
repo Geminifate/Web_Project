@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2019??7??18?? ????9:00:08 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.itcasr.shop.user.vo.User" table="user">
+        <id name="uid" type="java.lang.Integer">
+            <column name="UID" />
+            <generator class="native" />
+        </id>
+        <property name="username" type="java.lang.String">
+        </property>
+        <property name="password" type="java.lang.String">
+        </property>
+        <property name="name" type="java.lang.String">
+        </property>
+        <property name="email" type="java.lang.String">
+        </property>
+        <property name="phone" type="java.lang.String">
+        </property>
+        <property name="addr" type="java.lang.String">
+        </property>
+        <property name="state" type="java.lang.Integer">
+        </property>
+        <property name="code" type="java.lang.String">
+        </property>
+    </class>
+</hibernate-mapping>

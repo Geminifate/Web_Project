@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+
+<struts>
+	<constant name="struts.devMode" value="false"></constant>
+    <package name="shop" extends="struts-default" namespace="/">
+    	<interceptors>
+    		<interceptor name="PrivilegeTnterceptor" class="cn.itcasr.shop.interceptor.PrivilegeTnterceptor"></interceptor>
+    	</interceptors>
+    	<global-results>
+    		<result name="msg">/WEB-INF/JSP/msg.jsp</result>
+    		<result name="login">/WEB-INF/JSP/login.jsp</result>
+    		<result name="loginFail">/admin/index.jsp</result>
+    	</global-results>
+    	<action name="index" class="indexAction">
+    		<result name="index">/WEB-INF/JSP/index.jsp</result>
+    	</action>
+    	<action name="user_*" class="userAction" method="{1}">
+    		<result name="registPage">/WEB-INF/JSP/regist.jsp</result>
+    		<result name="input">/WEB-INF/JSP/regist.jsp</result>
+    		<result name="loginPage">/WEB-INF/JSP/login.jsp</result>
+    		<result name="loginSuccess" type="redirectAction">index</result>
+    		<result name="quit" type="redirectAction">index</result>
+    		<result name="checkcodeFail">/WEB-INF/JSP/regist.jsp</result>
+    		<allowed-methods>regex:.*</allowed-methods>
+    	</action>
+    	<action name="checkImg" class="checkImgAction"></action>
+    	<action name="product_*" class="productAction" method="{1}">
+    		<result name="findByPid">/WEB-INF/JSP/product.jsp</result>
+    		<result name="findByCid">/WEB-INF/JSP/productList.jsp</result>
+    		<result name="findByCsid">/WEB-INF/JSP/productList.jsp</result>
+    		<allowed-methods>regex:.*</allowed-methods>
+    	</action>
+    	<action name="cart_*" class="cartAction" method="{1}">
+    		<result name="addCart">/WEB-INF/JSP/cart.jsp</result>
+    		<result name="clearCart">/WEB-INF/JSP/cart.jsp</result>
+    		<result name="removeCart">/WEB-INF/JSP/cart.jsp</result>
+    		<result name="myCart">/WEB-INF/JSP/cart.jsp</result>
+    		<allowed-methods>regex:.*</allowed-methods>
+    	</action>
+    	<action name="order_*" class="orderAction" method="{1}">
+    		<result name="saveSuccess">/WEB-INF/JSP/order.jsp</result>
+    		<result name="findByUidSuccess">/WEB-INF/JSP/orderList.jsp</result>
+    		<result name="findByOidSuccess">/WEB-INF/JSP/order.jsp</result>
+    		<result name="updateSateSuccess" type="redirectAction">order_findByUid.action?page=1</result>
+    		<allowed-methods>regex:.*</allowed-methods>
+    	</action>
+    	<action name="adminUser_*" class="adminUserAction" method="{1}">
+    		<result name="loginFail">/admin/index.jsp</result>
+    		<result name="loginSuccess" type="redirect">/admin/home.jsp</result>
+    		<allowed-methods>regex:.*</allowed-methods>
+    	</action>
+    	<!-- 后台一级分类管理 -->
+    	<action name="adminCategory_*" class="adminCategoryAction" method="{1}">
+    		<result name="findAll">/admin/category/list.jsp</result>
+    		<result name="saveSuccess" type="redirectAction">adminCategory_findAll.action</result>
+    		<result name="deleteSuccess" type="redirectAction">adminCategory_findAll.action</result>
+    		<result name="editSuccess">/admin/category/edit.jsp</result>
+    		<result name="updateSuccess" type="redirectAction">adminCategory_findAll.action</result>
+    		<interceptor-ref name="PrivilegeTnterceptor"></interceptor-ref>
+    		<interceptor-ref name="defaultStack"></interceptor-ref>
+    		<allowed-methods>regex:.*</allowed-methods>
+    	</action>
+    	<!-- 后台二级分类管理 -->
+    	<action name="adminCategorySecond_*" class="adminCategorySecondAction" method="{1}">
+    		<result name="findAll">/admin/categorysecond/list.jsp</result>
+    		<result name="addPageSuccess">/admin/categorysecond/add.jsp</result>
+    		<result name="saveSuccess" type="redirectAction">adminCategorySecond_findAll.action?page=1</result>
+    		<result name="deleteSuccess" type="redirectAction">adminCategorySecond_findAll.action?page=1</result>
+    		<result name="editSuccess">/admin/categorysecond/edit.jsp</result>
+    		<result name="updateSuccess" type="redirectAction">adminCategorySecond_findAll.action?page=1</result>
+    		<interceptor-ref name="PrivilegeTnterceptor"></interceptor-ref>
+    		<interceptor-ref name="defaultStack"></interceptor-ref>
+    		<allowed-methods>regex:.*</allowed-methods>
+    	</action>
+    	<action name="adminProduct_*" class="adminProductAction" method="{1}">
+    		<result name="findAll">/admin/product/list.jsp</result>
+    		<result name="addPageSuccess">/admin/product/add.jsp</result>
+    		<result name="saveSuccess" type="redirectAction">adminProduct_findAll.action?page=1</result>
+    		<result name="deleteSuccess" type="redirectAction">adminProduct_findAll.action?page=1</result>
+    		<result name="editSuccess">/admin/product/edit.jsp</result>
+    		<result name="updateSuccess" type="redirectAction">adminProduct_findAll.action?page=1</result>
+    		<interceptor-ref name="PrivilegeTnterceptor"></interceptor-ref>
+    		<interceptor-ref name="defaultStack"></interceptor-ref>
+    		<allowed-methods>regex:.*</allowed-methods>
+    	</action>
+    	<action name="adminOrder_*" class="adminOrderAction" method="{1}">
+    		<result name="findAll">/admin/order/list.jsp</result>
+    		<result name="findOrderItem">/admin/order/orderItem.jsp</result>
+    		<result name="updateStateSuccess" type="redirectAction">adminOrder_findAll.action?page=1</result>
+    		<interceptor-ref name="PrivilegeTnterceptor"></interceptor-ref>
+    		<interceptor-ref name="defaultStack"></interceptor-ref>
+    		<allowed-methods>regex:.*</allowed-methods>
+    	</action>
+    </package>
+</struts>
